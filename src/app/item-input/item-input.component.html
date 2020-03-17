@@ -1,0 +1,29 @@
+<div class="row">
+    <div class="col-md-12 mb-4">
+        <div class="form-inline justify-content-between">
+            <input
+                #contentInput
+                class="form-control"
+                id="content-input"
+                type="text"
+                placeholder="Shopping list item..."
+                [(ngModel)]="content"
+                (keyup.enter)="amountInput.focus()"
+            >
+
+            <input
+                #amountInput
+                class="form-control"
+                id="amount-input"
+                type="number"
+                placeholder="0"
+                [(ngModel)]="amount"
+                (keyup.enter)="addToList()"
+            >
+
+            <button class="btn btn-success" (click)="addToList()">
+                <fa-icon [icon]="['fas', 'plus']"></fa-icon> Add
+            </button>
+        </div>
+    </div>
+</div>

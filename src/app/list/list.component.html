@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="col-md-12">
+        <ul class="list-group" *ngIf="items.length > 0; else noContent">
+            <div cdkDropList (cdkDropListDropped)="drop($event)">
+                <li [ngClass]="{ 'item-disabled' : item.checked }" class="list-group-item" *ngFor="let item of items; index as index">
+                    <div>
+                        <fa-icon cdkDrag icon="grip-vertical" class="mr-4"></fa-icon>
+
+                        <span [ngClass]="{ 'strike-through' : item.checked }">
+                            {{ item.content }}
+                        </span>
+
+                        <span class="badge badge-pill badge-secondary ml-3">
+                            {{ item.amount }}
+                        </span>
+
+                        <div class="float-right">
+                            <fa-icon
+                                    [icon]="['far', 'check-circle']"
+                                    size="lg"
+                                    class="text-success mr-2 select"
+                                    *ngIf="! item.checked"
+                                    (click)="toggleChecked(index)"
+                            ></fa-icon>
+
+                            <fa-icon
+                                    [icon]="['far', 'times-circle']"
+                                    size="lg"
+                                    class="text-danger mr-2 select"
+                                    *ngIf="item.checked"
+                                    (click)="toggleChecked(index)"
+                            ></fa-icon>
+
+                            <fa-icon
+                                    [icon]="['fas', 'trash']"
+                                    size="lg"
+                                    class="text-danger select"
+                                    (click)="deleteFromList(index)"
+                            ></fa-icon>
+                        </div>
+                    </div>
+                </li>
+            </div>
+        </ul>
+
+        <ng-template #noContent>
+            <p class="text-center text-muted font-italic">There are no items in the shopping list</p>
+        </ng-template>
+    </div>
+</div>
